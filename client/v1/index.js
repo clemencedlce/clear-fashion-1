@@ -95,6 +95,10 @@ console.table(PRODUCT_LIST_FILTERED);
 // 1. Determine the average price of the marketplace
 // 2. Log the average
 
+var total = marketplace.reduce((acc, product) => acc + product.price,0)
+var moyenne_price = total/marketplace.length
+console.log(moyenne_price)
+
 /**
  * 🏎
  * We are almost done with the `marketplace` variable
