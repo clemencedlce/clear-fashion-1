@@ -73,10 +73,15 @@ console.log(BRAND_NAMES.length);
 function compareNombre(a,b){ return a.price-b.price;}
 var PRODUCT_LIST_SORTED = marketplace.sort(compareNombre);
 console.table(PRODUCT_LIST_SORTED);
+
 // 🎯 TODO 5: Sort by date
 // 1. Create a function to sort the marketplace objects by products date
 // 2. Create a variable and assign it the list of products by date from recent to old
 // 3. Log the variable
+
+function compareDate(a,b) { return new Date(a.released)- new Date(b.released); }
+var PRODUCT_LIST_SORTED_DATE = marketplace.sort(compareDate);
+console.table(PRODUCT_LIST_SORTED_DATE);
 
 // 🎯 TODO 6: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
