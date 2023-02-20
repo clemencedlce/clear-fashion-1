@@ -35,6 +35,11 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // I can find on these e-shops
 // 2. Log the variable
 
+console.table(MY_FAVORITE_BRANDS);
+var CHEAPEST_TSHIRT;
+CHEAPEST_TSHIRT = ["https://www.faguo-store.com/fr/vetements/7606-arcy-t-shirt-en-coton-recycle-kaki.html","https://www.loom.fr/collections/t-shirts-polos/products/le-t-shirt-homme","https://ecclo.fr/products/t-shirt-noir-boycott-world-cup-2022"];
+console.table(CHEAPEST_TSHIRT);
+
 /**
  * 👕
  * Easy 😁?
