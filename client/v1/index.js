@@ -122,9 +122,29 @@ console.log(moyenne_price)
 // 2. Log the variable
 // 3. Log the number of products by brands
 
+const brands = {};
+
+for (const product of marketplace) {
+  if (brands[product.brand]) {
+    brands[product.brand].push(product);
+  } else {
+    brands[product.brand] = [product];
+  }
+}
+
+for (const brand in brands) 
+{
+  console.log(`Brand: ${brand} has ${brands[brand].length} products`);
+}
+
+
+
 // 🎯 TODO 9: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
+
+const sortedBrands = {};
+
 
 // 🎯 TODO 10: Sort by date for each brand
 // 1. For each brand, sort the products by date, from old to recent
