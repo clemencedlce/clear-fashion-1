@@ -19,6 +19,7 @@ let brandsCount = 0;
 let p50 = 0;
 let p90 = 0;
 let p95 = 0;
+let favoriteList = [];
 
 
 // instantiate the selectors
@@ -31,6 +32,7 @@ const recentlyReleased = document.querySelector("#recently-released");
 const reasonablePrice = document.querySelector("#reasonable-price");
 const sortproduct = document.querySelector("#sort-select");
 const spanNbProductsnew = document.querySelector('#nbNewProducts');
+const spanLastReleased = document.querySelector('#last-released');
 
 /**
  * Set global value
@@ -155,6 +157,13 @@ const renderProducts = products => {
         <a href="${product.link}">${product.name}</a>
         <span>${product.price}</span>
         <span>${product.released}</span>
+        
+
+        <button class="material-symbols-outlined" onclick="toggleFavourite('${product.uuid}')"
+          title="Ajouter aux favoris"
+        >
+          favori
+        </button>
       </div>
     `;
     })
@@ -216,6 +225,16 @@ const renderStats = () => {
   spanP95.innerHTML = p95;
 };
 
+/** Render Last released date indicator 
+*/
+
+const renderLastReleased = async() => {
+  const products = await fetchProducts(1,currentPagination.count);
+  const last= last_released(products.result);
+  spanLastReleased.innerHTML = last;
+ 
+};
+
 /**
  * Render page selector
  * @param  {Object} pagination
@@ -235,6 +254,8 @@ const render = (products, pagination) => {
   renderIndicators(pagination);
   renderBrands(brand);
   renderBrandsCount();
+  renderStats();
+  renderLastReleased();
 };
 
 
@@ -350,5 +371,20 @@ selectSort.addEventListener('change', async (event) => {
   render(currentProducts, currentPagination);
 });
 
-/** Feature 9 : number of recent products indicator **/
+/** Feature 11 : last released date indicator **/
 
+function last_released(products){
+  const dates = products.map(product => product.released);
+  dates.sort((a,b) => a.released - b.released);
+  return dates[0];
+}
+
+window.addEventListener('load', renderLastReleased);
+
+/** Feature 13 : Save as Favorite **/ 
+
+const saveFavorites = () => {
+  localStorage.setItem('favorites', JSON.stringify(favoriteList));
+};
+
+saveFavorites();
